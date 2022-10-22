@@ -23,12 +23,16 @@
                         @endif
 
                         <h2>{{ $name }}</h2>
-                        <h3>Web Designer</h3>
+                        <h3>{{ $job }}</h3>
                         <div class="social-links mt-2">
-                            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                            <a href="//{{ $twitter }}" class="twitter" target="blank"><i
+                                    class="bi bi-twitter"></i></a>
+                            <a href="//{{ $facebook }}" class="facebook" target="blank"><i
+                                    class="bi bi-facebook"></i></a>
+                            <a href="//{{ $instagram }}" class="instagram" target="blank"><i
+                                    class="bi bi-instagram"></i></a>
+                            <a href="//{{ $linkedin }}" class="linkedin" target="blank"><i
+                                    class="bi bi-linkedin"></i></a>
                         </div>
                     </div>
                 </div>
@@ -43,12 +47,12 @@
                         <ul class="nav nav-tabs nav-tabs-bordered">
 
                             <li class="nav-item">
-                                <button class="nav-link active" data-bs-toggle="tab"
+                                <button class="nav-link" data-bs-toggle="tab"
                                     data-bs-target="#profile-overview">Overview</button>
                             </li>
 
                             <li class="nav-item">
-                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit
+                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit
                                     Profile</button>
                             </li>
 
@@ -65,7 +69,7 @@
                         </ul>
                         <div class="tab-content pt-2">
 
-                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                            <div class="tab-pane fade profile-overview" id="profile-overview">
                                 <h5 class="card-title">About</h5>
                                 <p class="small fst-italic">{{ $about }}</p>
 
@@ -108,7 +112,7 @@
 
                             </div>
 
-                            <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                            <div class="tab-pane fade show active profile-edit pt-3" id="profile-edit">
 
                                 <!-- Profile Edit Form -->
 
@@ -121,11 +125,37 @@
                                         @else
                                             <img src="{{ asset('storage/' . $image) }}" alt="Profile">
                                         @endif
+                                        @if ($imgtemp != null)
+                                            <div class="text-success text-sm">
+
+                                                {{ 'Image selected!' }}
+                                            </div>
+                                        @endif
+                                        @error('image')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                        @if (session()->has('romoved'))
+                                            <div class="alert alert-success">
+                                                {{ session('romoved') }}
+                                            </div>
+                                        @endif
+                                        <input type="file" id="files" wire:model.defer="imgtemp"
+                                            style="display:none" />
                                         <div class="pt-2">
-                                            <a href="#" class="btn btn-primary btn-sm"
-                                                title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                                            <a href="#" class="btn btn-danger btn-sm"
-                                                title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                                            <a class="btn btn-primary btn-sm" onclick="click_the_button(files);"
+                                                title="Upload new profile image"><i class="bi bi-upload"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-danger btn-sm" wire:click="removepic"
+                                                title="Remove my profile image"><i class="bi bi-trash"></i>
+                                            </a>
+
+                                            <script>
+                                                function click_the_button(btn) {
+                                                    btn.click();
+                                                }
+                                            </script>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -182,7 +212,8 @@
                                 <div class="row mb-3">
                                     <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input wire:model.defer="email" type="email" class="form-control" disabled>
+                                        <input wire:model.defer="email" type="email" class="form-control"
+                                            readonly>
                                     </div>
                                 </div>
 
@@ -220,6 +251,13 @@
 
                                 <div class="text-center">
                                     <button wire:click="updateprofile" class="btn btn-primary">Save Changes</button>
+                                </div>
+                                <div class="mt-2">
+                                    @if (session()->has('message'))
+                                        <div class="alert alert-success">
+                                            {{ session('message') }}
+                                        </div>
+                                    @endif
                                 </div>
                                 <!-- End Profile Edit Form -->
 
@@ -273,39 +311,55 @@
 
                             <div class="tab-pane fade pt-3" id="profile-change-password">
                                 <!-- Change Password Form -->
-                                <form>
+
 
                                     <div class="row mb-3">
-                                        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current
+                                        <label for="currentpassword" class="col-md-4 col-lg-3 col-form-label">Current
                                             Password</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="password" type="password" class="form-control"
-                                                id="currentPassword">
+                                            <input wire:model.defer="currentpassword" type="password" class="form-control"
+                                                id="currentpassword" required>
                                         </div>
+                                        @error('currentpassword')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New
+                                        <label for="password" class="col-md-4 col-lg-3 col-form-label">New
                                             Password</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="newpassword" type="password" class="form-control"
-                                                id="newPassword">
+                                            <input wire:model.defer="password" type="password" class="form-control"
+                                                id="password" required>
                                         </div>
+                                        @error('password')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter
+                                        <label for="password_confirmation"
+                                            class="col-md-4 col-lg-3 col-form-label">Re-enter
                                             New Password</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="renewpassword" type="password" class="form-control"
-                                                id="renewPassword">
+                                            <input wire:model.defer="password_confirmation" type="password" class="form-control"
+                                                id="password_confirmation" required>
                                         </div>
                                     </div>
 
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-primary">Change Password</button>
+                                        <button type="submit" wire:click="changePw" class="btn btn-primary">Change
+                                            Password</button>
                                     </div>
-                                </form><!-- End Change Password Form -->
+                                    <div class="mt-2">
+                                        @if (session()->has('status'))
+                                            <div class="alert alert-success">
+                                                {{ session('status') }}
+                                            </div>
+                                        @endif
+                                    </div>
+
+                               <!-- End Change Password Form -->
 
                             </div>
 
