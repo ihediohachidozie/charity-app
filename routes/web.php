@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Profile;
+use App\Http\Livewire\Needs;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +21,10 @@ Route::get('/', function () {
 });
 
 #Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-Route::get('/home', Dashboard::class)->name('dashboard');
-Route::get('/profile', Profile::class)->name('profile');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', Dashboard::class)->name('dashboard');
+    Route::get('/profile', Profile::class)->name('profile');
+    Route::get('/need-help', Needs::class)->name('needhelp');
+    //add more Routes here
+});

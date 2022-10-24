@@ -66,7 +66,7 @@ class Profile extends Component
             $user->profile->save();
             $imageName = time() . '_' . $this->image->extension();
 
-            $img = Image::make($this->image)->fit(640, 428);
+            $img = Image::make($this->image)->fit(120, 120);
 
             $img->save('storage/' . $imageName);
         }

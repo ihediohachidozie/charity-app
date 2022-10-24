@@ -28,6 +28,11 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
+
+    public function needhelp()
+    {
+        return $this->hasMany(Needhelp::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
