@@ -15,8 +15,8 @@
 
     <main id="main" class="main">
 
-        {{-- @yield('content') --}}
-        {{ $slot }}
+         @yield('content')
+       {{--  {{ $slot }} --}}
 
     </main><!-- End #main -->
 

@@ -44,7 +44,7 @@
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
                         <h6>{{ auth()->user()->name }}</h6>
-                        <span>{{auth()->user()->profile->job}}</span>
+                        <span>{{auth()->user()->profile->job ?? ''}}</span>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
@@ -61,7 +61,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="{{route('needhelp')}}">
+                        <a class="dropdown-item d-flex align-items-center" href="{{route('needs.index')}}">
                             <i class="bi bi-question-circle"></i>
                             <span>Need Help?</span>
                         </a>

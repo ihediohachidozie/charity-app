@@ -19,7 +19,7 @@
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{route('needhelp')}}">
+        <a class="nav-link collapsed" href="{{route('needs.index')}}">
           <i class="bi bi-question-circle"></i>
           <span>Need Help?</span>
         </a>

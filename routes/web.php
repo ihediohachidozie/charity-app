@@ -1,9 +1,13 @@
 <?php
 
-use App\Http\Livewire\Dashboard;
-use App\Http\Livewire\Profile;
 use App\Http\Livewire\Needs;
+use App\Http\Livewire\Profile;
+use App\Http\Livewire\Dashboard;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NeedController;
+use App\Http\Controllers\UserprofileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +24,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-#Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', Dashboard::class)->name('dashboard');
-    Route::get('/profile', Profile::class)->name('profile');
-    Route::get('/need-help', Needs::class)->name('needhelp');
+
+    #Route::get('/need-help', Needs::class)->name('needhelp');
+    Route::get('/profile', [UserprofileController::class, "index"])->name('profile');
+    Route::post('/profile', [UserprofileController::class, "store"])->name('profile.store');
+    Route::post('/profile/password', [UserprofileController::class, "changepw"])->name('profile.pw');
     //add more Routes here
+
+    Route::resource('needs', NeedController::class);
 });
