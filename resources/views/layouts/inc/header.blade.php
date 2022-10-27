@@ -38,12 +38,12 @@
                     @else
                     <img src={{asset("storage/".auth()->user()->profile->image)}} alt="Profile" class="rounded-circle">
                     @endif
-                    <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->name }}</span>
+                    <span class="d-none d-md-block dropdown-toggle ps-2">{{ ucwords(auth()->user()->name) }}</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>{{ auth()->user()->name }}</h6>
+                        <h6>{{ ucwords(auth()->user()->name) }}</h6>
                         <span>{{auth()->user()->profile->job ?? ''}}</span>
                     </li>
                     <li>

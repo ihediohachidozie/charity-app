@@ -6,7 +6,7 @@
     @else
     <img src="{{asset('storage/'.$user->profile->image)}}" alt="Profile" class="rounded-circle">
     @endif
-    <h2>{{$user->name}}</h2>
+    <h2>{{ucwords($user->name)}}</h2>
     <h3>{{$user->profile->job ?? ''}}</h3>
     <div class="social-links mt-2">
         <a href="//{{$user->profile->twitter ?? '#'}}" class="twitter"><i class="bi bi-twitter"></i></a>

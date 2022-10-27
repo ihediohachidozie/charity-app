@@ -41,8 +41,7 @@ class UserprofileController extends Controller
     public function store(Request $request)
     {
         //
-        if(auth()->user()->profile != null)
-        {
+        if (auth()->user()->profile != null) {
             $id = auth()->user()->profile->id;
 
             $profile = Profile::updateOrcreate(['id' => $id], [
@@ -57,7 +56,7 @@ class UserprofileController extends Controller
                 'facebook' => $request->facebook,
                 'linkedin' => $request->linkedin,
             ]);
-        }else{
+        } else {
             $profile = Profile::create([
                 'company' => $request->company,
                 'job' => $request->job,
@@ -76,10 +75,26 @@ class UserprofileController extends Controller
         $profile->save();
 
         $this->storeImage($profile);
+        $this->changeName($request);
 
-        return back()->with('status','Profile successfully changed.');
-
+        return back()->with('status', 'Profile successfully changed.');
     }
+
+    /**
+     * change Name function
+     *
+     * @param  mixed $profile
+     * @return void
+     */
+    public function changeName($request)
+    {
+        if (request()->has('name')) {
+            User::find(auth()->id())->update([
+                'name' => $request->name,
+            ]);
+        }
+    }
+
     /**
      * store Image function
      *
@@ -119,6 +134,7 @@ class UserprofileController extends Controller
 
         return redirect()->back()->with('success', 'Password successfully changed.');
     }
+
     /**
      * Display the specified resource.
      *

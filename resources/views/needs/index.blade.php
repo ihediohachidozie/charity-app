@@ -48,8 +48,9 @@
                                             @foreach ($needs as $need)
                                                 <tr>
                                                     <th scope="row"><a href="#">{{ $need->id }}</a></th>
+
                                                     <td>{{ $helptype[$need->type] }}</td>
-                                                    <td><a href="#" class="text-primary">{{ $need->description }}</a>
+                                                    <td><a href="{{route('needs.edit', $need->id)}}" class="text-primary">{{ $need->description }}</a>
                                                     </td>
                                                     <td>{{ $need->monetary }}</td>
                                                     <td>
