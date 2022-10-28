@@ -9,9 +9,9 @@
     <h2>{{ucwords($user->name)}}</h2>
     <h3>{{$user->profile->job ?? ''}}</h3>
     <div class="social-links mt-2">
-        <a href="//{{$user->profile->twitter ?? '#'}}" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="//{{$user->profile->facebook ?? '#'}}" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="//{{$user->profile->instagram ?? '#'}}" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="//{{$user->profile->linkedin ?? '#'}}" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <a href="//{{$user->profile->twitter ?? '#'}}" class="twitter" target="blank"><i class="bi bi-twitter"></i></a>
+        <a href="//{{$user->profile->facebook ?? '#'}}" class="facebook" target="blank"><i class="bi bi-facebook"></i></a>
+        <a href="//{{$user->profile->instagram ?? '#'}}" class="instagram" target="blank"><i class="bi bi-instagram"></i></a>
+        <a href="//{{$user->profile->linkedin ?? '#'}}" class="linkedin" target="blank"><i class="bi bi-linkedin"></i></a>
     </div>
 </div>

@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NeedController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminNeedController;
 use App\Http\Controllers\UserprofileController;
 
 /*
@@ -35,4 +37,10 @@ Route::group(['middleware' => 'auth'], function () {
     //add more Routes here
 
     Route::resource('needs', NeedController::class);
+
+    Route::resource('users', AdminController::class);
+    Route::resource('needhelps', AdminNeedController::class);
+
+   # Route::get('users', [AdminController::class, 'index'])->name('admin.index');
+   # Route::get('users', [AdminController::class, 'edit'])->name('admin.index');
 });

@@ -23,7 +23,20 @@
           <i class="bi bi-question-circle"></i>
           <span>Need Help?</span>
         </a>
-      </li><!-- End F.A.Q Page Nav -->
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('users.index')}}">
+            <i class="bi bi-people"></i><span>Users</span>
+          </a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('needhelps.index')}}">
+            <i class="bi bi-layers"></i><span>Users' Needs</span>
+          </a>
+
+      </li>
+      <!-- End F.A.Q Page Nav -->
 
 
     </ul>

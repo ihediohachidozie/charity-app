@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Need Help</h1>
+        <h1>Users' Needs</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item active">Need Help</li>
+                <li class="breadcrumb-item active">Users' Needs</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -23,10 +23,7 @@
                         <div class="card recent-sales overflow-auto">
 
                             <div class="filter">
-                                <a href="{{ route('needs.create') }}" class="btn btn-primary">
-                                    <i class="bi bi-plus-lg me-1"></i>
-                                    Request</a>
-                                <a class="icon" href="#" data-bs-toggle="dropdown"></a>
+
 
                             </div>
 
@@ -36,35 +33,45 @@
                                 <table class="table table-borderless datatable">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Type</th>
+                                            <th scope="col">Picture</th>
+                                            <th scope="col">User</th>
+
                                             <th scope="col">Description</th>
-                                            <th scope="col">Value</th>
-                                            <th scope="col">Status</th>
+                                            <th scope="col" class="text-center">Value</th>
+                                            <th scope="col" class="text-center">Status</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @if (count($needs) > 0)
                                             @foreach ($needs as $need)
                                                 <tr>
-                                                    <th scope="row"><a href="#">{{ $need->id }}</a></th>
 
-                                                    <td>{{ $need->type }}</td>
-                                                    <td><a href="{{ route('needs.edit', $need->id) }}"
+                                                    <th scope="row" class="text-center">
+                                                        <a href="{{ route('needhelps.show', $need) }}" class="text-primary">
+                                                            <img src="{{ asset('storage/' . $need->picture) }}"
+                                                                class="rounded-circle" width="50px" height="50px">
+                                                        </a>
+                                                    </th>
+
+                                                    <td>{{ $need->user->name }}</td>
+                                                    <td><a href="{{ route('needhelps.show', $need) }}"
                                                             class="text-primary">{{ $need->description }}</a>
                                                     </td>
-                                                    <td>{{ $need->monetary }}</td>
-                                                    <td>
+                                                    <td class="text-center">{{ $need->monetary }}</td>
+                                                    <td class="text-center">
 
-                                                        <span class="badge bg-warning text-dark"><i
-                                                                class="bi bi-exclamation-triangle me-1"></i>{{ $need->status }}</span>
+                                                            <span class="badge bg-warning text-dark"><i
+                                                                    class="bi bi-exclamation-triangle me-1"></i>{{ $need->status }}</span>
+
+
 
                                                     </td>
                                                 </tr>
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="5" class="text-center">
+                                                <td colspan="4" class="text-center">
                                                     No record found
                                                 </td>
                                             </tr>
