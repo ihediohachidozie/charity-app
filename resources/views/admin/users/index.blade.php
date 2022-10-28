@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="card-body">
-                                <h5 class="card-title">All Requests</h5>
+                                <h5 class="card-title">All Users</h5>
 
                                 <table class="table table-borderless datatable">
                                     <thead>

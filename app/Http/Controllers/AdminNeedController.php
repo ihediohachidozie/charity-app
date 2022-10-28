@@ -17,8 +17,8 @@ class AdminNeedController extends Controller
     public function index()
     {
         $needs = Needhelp::with('user')->orderBy('id', 'desc')->get();
-        $status = ['Pending Approval', 'Rejected', 'Approved'];
-        return view('admin.needs.index', compact('needs', 'status'));
+
+        return view('admin.needs.index', compact('needs'));
     }
 
     /**
@@ -74,7 +74,13 @@ class AdminNeedController extends Controller
      */
     public function update(Request $request, Needhelp $needhelp)
     {
-        //
+        dd($needhelp->id);
+       Needhelp::find($needhelp->id)->update([
+            'status' => $request->status,
+
+        ]);
+
+        return redirect()->route('needhelps.index');
     }
 
     /**
