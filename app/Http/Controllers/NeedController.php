@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Helptype;
 use App\Models\Needhelp;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -91,9 +92,8 @@ class NeedController extends Controller
      */
     public function edit($id)
     {
-        $helptype = [1 => 'Food', 2 => 'Money', 3 => 'Cloth'];
+        $helptype = Helptype::all();
         $need = Needhelp::find($id);
-
         return view('needs.edit', compact('need', 'helptype'));
     }
 

@@ -1,22 +1,23 @@
 <div class="col-md-12">
-    <div class="form-floating mb-3">
-        <select class="form-select" name="type" id="floatingSelect" aria-label="State">
-            <option selected>Type of Need</option>
 
-                @foreach ($helptype as $key => $value)
-                    <option value="{{ $key }}" @selected($need->type == $key)>{{ $value }}</option>
-                @endforeach
+    <div class="form-floating mb-3">
+        <select class="form-select" name="type">
+
+            @foreach ($helptype as $help)
+                <option value="{{ $help->id }}" @selected($need->type == $help->id)>{{ $help->type }}
+                </option>
+            @endforeach
 
 
         </select>
-        <label for="floatingSelect">Need</label>
+        <label for="floatingSelect">Select Your Need</label>
     </div>
 </div>
 
 
 <div class="col-12">
     <div class="form-floating">
-        <textarea class="form-control" name="description" placeholder="Description" id="floatingTextarea" style="height: 100px;"
+        <textarea class="form-control" name="description" placeholder="Description" id="floatingTextarea" style="height: 150px;"
             autocomplete="no">{{ $need->description ?? '' }}</textarea>
         <label for="floatingTextarea">Description</label>
     </div>

@@ -11,58 +11,49 @@
                     <form method="Post" action="{{ route('needhelps.update', $needhelp->id) }}">
                         @csrf
                         @method('PUT')
-                        <h5 class="card-title">Support Type: {{ $needhelp->type }}</h5>
+                        <h5 class="card-title">Support For {{ $needhelp->type }}</h5>
                         <p class="card-text">{{ $needhelp->description }}</p>
-                        <div class="row card-text">
-                            <div class="col-lg-3 col-md-4 label">Country</div>
-                            <div class="col-lg-9 col-md-8">{{ $needhelp->country }}</div>
-                        </div>
-                        <div class="row card-text">
-                            <div class="col-lg-3 col-md-4 label">Province/City</div>
-                            <div class="col-lg-9 col-md-8">{{ $needhelp->province }}</div>
-                        </div>
-                        <div class="row card-text">
-                            <div class="col-lg-3 col-md-4 label">Value:</div>
-                            <div class="col-lg-9 col-md-8">{{ $needhelp->monetary }}</div>
-                        </div>
-                        <fieldset class="row mb-3 mt-4">
-                            <legend class="col-form-label col-sm-3 pt-0">Approval Status</legend>
-                            <div class="col-sm-6">
-                              <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="gridRadios1" value=1 >
-                                <label class="form-check-label" for="gridRadios1">
-                                  First radio
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value=2>
-                                <label class="form-check-label" for="gridRadios2">
-                                  Second radio
-                                </label>
-                              </div>
-                              <div class="form-check disabled">
-                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value=3 >
-                                <label class="form-check-label" for="gridRadios3">
-                                  Third disabled radio
-                                </label>
-                              </div>
+                        <div class="card-body">
+                            <div class="d-flex mb-2">
+                                <div>
+                                    <span class="text-success small pt-1 fw-bold">Country:</span> <span
+                                        class="text-muted small pt-2 ps-1">{{ $needhelp->country }}</span>
+                                </div>
+                                <div class="ps-3">
+                                    <span class="text-success small pt-1 fw-bold">Province/City:</span> <span
+                                        class="text-muted small pt-2 ps-1">{{ $needhelp->province }}</span>
+                                </div>
+                                <div class="ps-3">
+                                    <span class="text-success small pt-1 fw-bold">Value:</span> <span
+                                        class="text-muted small pt-2 ps-1">@money($needhelp->monetary)</span>
+                                </div>
                             </div>
-                          </fieldset>
-                        <div class="row card-text">
-                            <div class="col-lg-3 col-md-4 label">Status:</div>
-                            <div class="col-lg-9 col-md-8">
-                                <label class="radio-inline">
-                                    <input type="radio" name="optradio" value="1" checked>Pending
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="optradio" value="2">Reject
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="optradio" value="3">Approve
-                                </label>
+                            <div class="d-flex">
+                                <div class="form-check">
+                                    <input class="form-check-input ps-1" type="radio" name="status" value=1>
+                                    <label class="form-check-label text-muted small" for="gridRadios1">
+                                        Pending
+                                    </label>
+                                </div>
+                                <div class="form-check mx-2">
+                                    <input class="form-check-input" type="radio" name="status" value=2>
+                                    <label class="form-check-label text-muted small" for="gridRadios2">
+                                        Reject
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="status" value=3>
+                                    <label class="form-check-label text-muted small" for="gridRadios3">
+                                        Approved
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                        <p class="card-text"><button type="submit" class="btn btn-primary mt-4">Button</button></p>
+                        <div class="d-grid gap-2 mt-3">
+                            <button class="btn btn-primary">Update</button>
+                        </div>
+
+
                     </form>
                 </div>
 

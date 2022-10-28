@@ -58,13 +58,18 @@
                                                     <td><a href="{{ route('needhelps.show', $need) }}"
                                                             class="text-primary">{{ $need->description }}</a>
                                                     </td>
-                                                    <td class="text-center">{{ $need->monetary }}</td>
+                                                    <td class="text-center">@money($need->monetary)</td>
                                                     <td class="text-center">
-
+                                                        @if ($need->status == 'Pending')
                                                             <span class="badge bg-warning text-dark"><i
                                                                     class="bi bi-exclamation-triangle me-1"></i>{{ $need->status }}</span>
-
-
+                                                        @elseif ($need->status == 'Rejected')
+                                                            <span class="badge bg-danger text-white"><i
+                                                                    class="bi bi-exclamation-octagon me-1"></i>{{ $need->status }}</span>
+                                                        @else
+                                                            <span class="badge bg-success text-white"><i
+                                                                    class="bi bi-check-circle me-1"></i>{{ $need->status }}</span>
+                                                        @endif
 
                                                     </td>
                                                 </tr>

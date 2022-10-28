@@ -74,7 +74,7 @@ class AdminNeedController extends Controller
      */
     public function update(Request $request, Needhelp $needhelp)
     {
-        dd($needhelp->id);
+
        Needhelp::find($needhelp->id)->update([
             'status' => $request->status,
 
