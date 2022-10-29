@@ -1,4 +1,42 @@
 <div class="col-md-12">
+    <div class="form-floating">
+        <input type="text" name="caption" class="form-control" id="floatingCity" placeholder="Caption" autocomplete="no"
+            value="{{ $need->caption ?? '' }}">
+        <label for="floatingCity">Project Title</label>
+    </div>
+</div>
+
+
+<div class="col-md-12">
+    <label for="inputText" class="col-form-label">Project Type</label>
+</div>
+<div class="col-md-12">
+
+{{--     <div class="d-flex">
+        <div class="form-check">
+            <input class="form-check-input ps-1" type="radio" name="type" value=1 @checked(old(1, $need->type))>
+            <label class="form-check-label" for="gridRadios1">
+                Food
+            </label>
+        </div>
+        <div class="form-check mx-2">
+            <input class="form-check-input" type="radio" name="type" value=2 @checked(old(2, $need->type))>
+            <label class="form-check-label" for="gridRadios2">
+                Money
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="type" value=3 @checked(old(3, $need->type))>
+            <label class="form-check-label" for="gridRadios3">
+                Cloth
+            </label>
+        </div>
+    </div> --}}
+
+
+</div>
+
+{{-- <div class="col-md-12">
 
     <div class="form-floating mb-3">
         <select class="form-select" name="type">
@@ -12,7 +50,7 @@
         </select>
         <label for="floatingSelect">Select Your Need</label>
     </div>
-</div>
+</div> --}}
 
 
 <div class="col-12">

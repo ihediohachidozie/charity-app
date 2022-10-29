@@ -29,8 +29,8 @@ class Needhelp extends Model
     {
         return [
             0 => 'Pending',
-            2 => 'Rejected',
-            3 => 'Approved'
+            1 => 'Rejected',
+            2 => 'Approved'
         ][$attribute];
         # code...
     }

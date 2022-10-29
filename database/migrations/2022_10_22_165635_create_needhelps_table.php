@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id')->references('id')->on('users')->onDelete();
             $table->integer('type')->nullable();
+            $table->string('caption')->nullable();
             $table->text('description')->nullable();
             $table->string('country')->nullable();
             $table->string('province')->nullable();

@@ -17,10 +17,10 @@ class NeedController extends Controller
     public function index()
     {
         $needs = Needhelp::where('user_id', auth()->id())->get();
-        $helptype = [1 => 'Food', 2 => 'Money', 3 => 'Cloth'];
-        $status = ['Pending Approval', 'Rejected', 'Approved'];
+        $helptype = Helptype::all();
+        //$status = ['Pending Approval', 'Rejected', 'Approved'];
 
-        return view('needs.index', compact('needs', 'helptype', 'status'));
+        return view('needs.index', compact('needs', 'helptype'));
     }
 
     /**
@@ -30,9 +30,9 @@ class NeedController extends Controller
      */
     public function create()
     {
-        $helptype = [1 => 'Food', 2 => 'Money', 3 => 'Cloth'];
+       # $helptype = Helptype::all();
         $need = new Needhelp();
-        return view('needs.create', compact('helptype', 'need'));
+        return view('needs.create', compact('need'));
     }
 
     /**
@@ -46,6 +46,7 @@ class NeedController extends Controller
         //
         $help = Needhelp::create([
             'type' => $request->type,
+            'caption' => $request->caption,
             'description' => $request->description,
             'province' => $request->province,
             'country' => $request->country,
@@ -81,7 +82,8 @@ class NeedController extends Controller
      */
     public function show($id)
     {
-        //
+        $need = Needhelp::find($id);
+        return view('needs.show', compact('need'));
     }
 
     /**
@@ -92,9 +94,9 @@ class NeedController extends Controller
      */
     public function edit($id)
     {
-        $helptype = Helptype::all();
+       # $helptype = Helptype::all();
         $need = Needhelp::find($id);
-        return view('needs.edit', compact('need', 'helptype'));
+        return view('needs.edit', compact('need'));
     }
 
     /**
@@ -109,6 +111,7 @@ class NeedController extends Controller
         //
         $help = Needhelp::find($id)->update([
             'type' => $request->type,
+            'caption' => $request->caption,
             'description' => $request->description,
             'province' => $request->province,
             'country' => $request->country,

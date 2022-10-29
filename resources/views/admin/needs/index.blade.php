@@ -36,7 +36,7 @@
                                             <th scope="col">Picture</th>
                                             <th scope="col">User</th>
 
-                                            <th scope="col">Description</th>
+                                            <th scope="col">Project</th>
                                             <th scope="col" class="text-center">Value</th>
                                             <th scope="col" class="text-center">Status</th>
 
@@ -50,13 +50,17 @@
                                                     <th scope="row" class="text-center">
                                                         <a href="{{ route('needhelps.show', $need) }}" class="text-primary">
                                                             <img src="{{ asset('storage/' . $need->picture) }}"
-                                                                class="rounded-circle" width="50px" height="50px">
+                                                                class="rounded" width="50px" height="50px">
                                                         </a>
                                                     </th>
 
-                                                    <td>{{ $need->user->name }}</td>
+                                                    <td>
+                                                        <a href="{{ route('users.show', $need->user->id) }}">
+                                                            {{ $need->user->name }}
+                                                        </a>
+                                                    </td>
                                                     <td><a href="{{ route('needhelps.show', $need) }}"
-                                                            class="text-primary">{{ $need->description }}</a>
+                                                            class="text-primary">{{ $need->caption }}</a>
                                                     </td>
                                                     <td class="text-center">@money($need->monetary)</td>
                                                     <td class="text-center">

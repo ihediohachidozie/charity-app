@@ -38,9 +38,10 @@
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Type</th>
-                                            <th scope="col">Description</th>
-                                            <th scope="col">Value</th>
+                                            <th scope="col">Project</th>
+                                            <th scope="col" class="text-center">Value</th>
                                             <th scope="col">Status</th>
+                                            <th scope="col" class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -51,9 +52,10 @@
 
                                                     <td>{{ $need->type }}</td>
                                                     <td><a href="{{ route('needs.edit', $need->id) }}"
-                                                            class="text-primary">{{ $need->description }}</a>
+                                                            class="text-primary">{{ $need->caption }}</a>
                                                     </td>
-                                                    <td>@money($need->monetary)</td>
+                                                    <td class="text-center">@money($need->monetary)</td>
+
                                                     <td>
 
                                                         @if ($need->status == 'Pending')
@@ -66,6 +68,10 @@
                                                             <span class="badge bg-success text-white"><i
                                                                     class="bi bi-check-circle me-1"></i>{{ $need->status }}</span>
                                                         @endif
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('needs.edit', $need->id) }}" class="btn btn-primary"> <i class="bi bi-pencil-square"></i></a>
+                                                       <a href="{{ route('needs.show', $need->id) }}" class="btn btn-info"> <i class="bi bi-eye-fill"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach

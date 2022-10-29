@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Needhelp;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Gate;
 use function PHPUnit\Framework\returnSelf;
 
 class AdminNeedController extends Controller
@@ -16,6 +17,9 @@ class AdminNeedController extends Controller
      */
     public function index()
     {
+        if (! Gate::allows('admin_view')) {
+            abort(403);
+        }
         $needs = Needhelp::with('user')->orderBy('id', 'desc')->get();
 
         return view('admin.needs.index', compact('needs'));
@@ -51,6 +55,9 @@ class AdminNeedController extends Controller
     public function show(Needhelp $needhelp)
     {
        // dd($needhelp);
+       if (! Gate::allows('admin_view', $needhelp)) {
+        abort(403);
+    }
         return view('admin.needs.show', compact('needhelp'));
     }
 
@@ -75,6 +82,9 @@ class AdminNeedController extends Controller
     public function update(Request $request, Needhelp $needhelp)
     {
 
+        if (! Gate::allows('admin_view', $needhelp)) {
+            abort(403);
+        }
        Needhelp::find($needhelp->id)->update([
             'status' => $request->status,
 
