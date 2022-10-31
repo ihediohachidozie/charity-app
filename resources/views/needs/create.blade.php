@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Floating labels Form</h5>
+            <h5 class="card-title">Add Project</h5>
 
             <!-- Floating Labels Form -->
             <form class="row g-3" method="POST" action="{{ route('needs.store') }}" enctype="multipart/form-data">

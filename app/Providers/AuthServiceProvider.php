@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('admin_view', fn(User $user) => $user->is_admin == true);
-        Gate::define('user_view', fn(User $user) => $user->is_admin == true);
+        Gate::define('user_view', fn(User $user) => $user->is_admin == false);
         //
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\NeedController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminNeedController;
 use App\Http\Controllers\UserprofileController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,11 @@ use App\Http\Controllers\UserprofileController;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
-});
+}); */
+
+Route::get('/', [WelcomeController::class, 'index']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
 

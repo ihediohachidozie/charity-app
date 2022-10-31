@@ -18,7 +18,12 @@
             <div class="col-lg-12">
                 <div class="row">
 
-                    @include('admin.home.cards')
+                    @can('admin_view')
+                        @include('admin.home.cards')
+                    @endcan
+                    @can('user_view')
+                        @include('card')
+                    @endcan
                     <!-- Reports -->
                     <div class="col-12">
                         <div class="card">

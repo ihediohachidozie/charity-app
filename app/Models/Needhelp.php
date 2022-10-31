@@ -20,7 +20,8 @@ class Needhelp extends Model
         return [
             1 => 'Food',
             2 => 'Money',
-            3 => 'Cloth'
+            3 => 'Clothing',
+            '' => ''
         ][$attribute];
         # code...
     }

@@ -13,7 +13,7 @@ class AdminController extends Controller
         if (! Gate::allows('admin_view')) {
             abort(403);
         }
-        $users = User::with('profile')->get();
+        $users = User::with('profile')->whereNot('id', 1)->get();
         return view('admin.users.index', compact('users'));
     }
 

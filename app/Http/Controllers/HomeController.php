@@ -27,11 +27,22 @@ class HomeController extends Controller
     public function index()
     {
         $users = User::all();
-        $needs = Needhelp::all();
+        if (auth()->user()->is_admin){
 
-        $requested_value = DB::table('needhelps')
-                ->select(DB::raw('SUM(monetary) as total_values'))
-                ->pluck('total_values');
+
+            $needs = Needhelp::all();
+
+            $requested_value = DB::table('needhelps')
+                    ->select(DB::raw('SUM(monetary) as total_values'))
+                    ->pluck('total_values');
+        }else{
+            $needs = Needhelp::where('user_id', auth()->id())->get();
+
+            $requested_value = DB::table('needhelps')
+                    ->select(DB::raw('SUM(monetary) as total_values'))
+                    ->where('user_id', auth()->id())
+                    ->pluck('total_values');
+        }
 
               // dd($orders);
 

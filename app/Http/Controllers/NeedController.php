@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Helptype;
+
 use App\Models\Needhelp;
 use Illuminate\Http\Request;
+
 use Intervention\Image\Facades\Image;
 
 class NeedController extends Controller
@@ -17,10 +18,8 @@ class NeedController extends Controller
     public function index()
     {
         $needs = Needhelp::where('user_id', auth()->id())->get();
-        $helptype = Helptype::all();
-        //$status = ['Pending Approval', 'Rejected', 'Approved'];
 
-        return view('needs.index', compact('needs', 'helptype'));
+        return view('needs.index', compact('needs'));
     }
 
     /**
@@ -30,9 +29,16 @@ class NeedController extends Controller
      */
     public function create()
     {
-       # $helptype = Helptype::all();
         $need = new Needhelp();
-        return view('needs.create', compact('need'));
+
+        if(auth()->user()->profile != null)
+        {
+            return view('needs.create', compact('need'));
+        }else{
+
+            return redirect()->route('profile');
+        }
+
     }
 
     /**
@@ -94,7 +100,6 @@ class NeedController extends Controller
      */
     public function edit($id)
     {
-       # $helptype = Helptype::all();
         $need = Needhelp::find($id);
         return view('needs.edit', compact('need'));
     }

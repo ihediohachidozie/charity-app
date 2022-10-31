@@ -12,45 +12,34 @@
 </div>
 <div class="col-md-12">
 
-{{--     <div class="d-flex">
+   <div class="d-flex">
         <div class="form-check">
-            <input class="form-check-input ps-1" type="radio" name="type" value=1 @checked(old(1, $need->type))>
+            <input class="form-check-input ps-1" type="radio" name="type" value=1 {{ $need->type == 'Food' ? 'checked': ''}}>
             <label class="form-check-label" for="gridRadios1">
                 Food
             </label>
         </div>
         <div class="form-check mx-2">
-            <input class="form-check-input" type="radio" name="type" value=2 @checked(old(2, $need->type))>
+            <input class="form-check-input" type="radio" name="type" value=2 {{ $need->type == 'Money' ? 'checked' : ''}}>
             <label class="form-check-label" for="gridRadios2">
                 Money
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="type" value=3 @checked(old(3, $need->type))>
+
+            <input class="form-check-input" type="radio" name="type" value=3 {{ $need->type == 'Clothing' ? 'checked' : ''}} >
+
+
             <label class="form-check-label" for="gridRadios3">
                 Cloth
             </label>
         </div>
-    </div> --}}
+    </div>
 
 
 </div>
 
-{{-- <div class="col-md-12">
 
-    <div class="form-floating mb-3">
-        <select class="form-select" name="type">
-
-            @foreach ($helptype as $help)
-                <option value="{{ $help->id }}" @selected($need->type == $help->id)>{{ $help->type }}
-                </option>
-            @endforeach
-
-
-        </select>
-        <label for="floatingSelect">Select Your Need</label>
-    </div>
-</div> --}}
 
 
 <div class="col-12">

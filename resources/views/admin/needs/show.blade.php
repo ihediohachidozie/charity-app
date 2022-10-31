@@ -28,24 +28,25 @@
                                         class="text-muted small pt-2 ps-1">@money($needhelp->monetary)</span>
                                 </div>
                             </div>
+
                             <div class="d-flex" >
                                 <div class="form-check">
-                                    <input class="form-check-input ps-1" type="radio" name="status" value=1
-                                        @checked(old(0, $needhelp->status))>
+                                    <input class="form-check-input ps-1" type="radio" name="status" value=0
+                                        {{$needhelp->status == 'Pending' ? 'checked' : ''}} >
                                     <label class="form-check-label text-muted small" for="gridRadios1">
                                         Pending
                                     </label>
                                 </div>
                                 <div class="form-check mx-2">
-                                    <input class="form-check-input" type="radio" name="status" value=2
-                                        @checked(old(1, $needhelp->status))>
+                                    <input class="form-check-input" type="radio" name="status" value=1
+                                    {{$needhelp->status == 'Rejected' ? 'checked' : ''}}>
                                     <label class="form-check-label text-muted small" for="gridRadios2">
-                                        Reject
+                                        Rejected
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status" value=3
-                                        @checked(old(2, $needhelp->status))>
+                                    <input class="form-check-input" type="radio" name="status" value=2
+                                    {{$needhelp->status == 'Approved' ? 'checked' : ''}}>
                                     <label class="form-check-label text-muted small" for="gridRadios3">
                                         Approved
                                     </label>

@@ -10,9 +10,9 @@
                                         <i class="bi bi-cash-stack"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>145</h6>
-                                        <span class="text-success small pt-1 fw-bold">12%</span> <span
-                                            class="text-muted small pt-2 ps-1">increase</span>
+                                        <h6 style="font-size: 20px">0</h6>
+                                        <span class="text-success small pt-1 fw-bold"></span> <span
+                                            class="text-muted small pt-2 ps-1"></span>
 
                                     </div>
                                 </div>
@@ -33,9 +33,9 @@
                                         <i class="bi bi-currency-dollar"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>{{$requested_value[0]}}</h6>
+                                        <h6 style="font-size: 20px">@money($requested_value[0] ?? 0)</h6>
                                         <span class="text-success small pt-1 fw-bold"></span> <span
-                                            class="text-muted small pt-2 ps-1">increase</span>
+                                            class="text-muted small pt-2 ps-1"></span>
 
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@
                                         <i class="bi bi-layers"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>{{count($needs)}}</h6>
+                                        <h6 style="font-size: 20px">{{count($needs)}}</h6>
                                         <span class="text-danger small pt-1 fw-bold"></span>
                                         <a href="{{route('needhelps.index')}}">
                                             <span class="text-muted small pt-2 ps-1">view</span>
@@ -84,7 +84,7 @@
                                         <i class="bi bi-people"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>{{count($users)}}</h6>
+                                        <h6 style="font-size: 20px">{{count($users)}}</h6>
                                         <span class="text-danger small pt-1 fw-bold"></span><a href="{{route('users.index')}}"> <span
                                             class="text-muted small pt-2 ps-1">view</span></a>
 

@@ -33,7 +33,7 @@
                                 <table class="table table-borderless datatable">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
+                                            <th scope="col">Profile Image</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Email</th>
                                         </tr>
@@ -44,8 +44,12 @@
                                                 <tr>
                                                     <th scope="row" class="text-center">
                                                         <a href="{{ route('users.show', $user->id) }}" class="text-primary">
-                                                            <img src="{{ asset('storage/' . $user->profile->image) }}"
-                                                                class="rounded-circle" width="50px" height="50px">
+                                                            @if ($user->profile == null)
+                                                            <img src="{{asset('assets/img/no-image.png')}}" alt="Profile" class="rounded-circle" width="50px" height="50px">
+                                                            @else
+
+                                                            <img src="{{ asset('storage/' . $user->profile->image)}}" class="rounded-circle" width="50px" height="50px">
+                                                            @endif
                                                         </a>
                                                     </th>
                                                     <td>{{ $user->name }}</td>
