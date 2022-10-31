@@ -167,27 +167,27 @@
                 <div class="row">
                     @foreach ($needs as $need)
                         <div class="col-lg-2">
-                            <div class="card border-0">
-                                <img src="{{ asset('storage/' . $need->picture) }}" class="card-img-top"
-                                    alt="...">
-                                <div class="card-body">
-                                    <h6 class="card-title">{{ $need->caption }}</h6>
+                            <a href="{{route('donate.form', $need->id)}}">
+                                <div class="card border-0">
+                                    <img src="{{ asset('storage/' . $need->picture) }}" class="card-img-top"
+                                        alt="...">
+                                    <div class="card-body">
+                                        <h6 class="card-title">{{ $need->caption }}</h6>
 
-                                    <div class="d-flex mb-2" style="justify-content:space-between">
-                                        <div>
-                                            <span class="text-success small pt-1 fw-bold">Country:</span> <span
-                                                class="text-muted small pt-2 ps-1">{{ $need->country }}</span>
+                                        <div class="d-flex mb-2" style="justify-content:space-between">
+                                            <div>
+                                                <span class="text-success small pt-1 fw-bold">Country:</span> <span
+                                                    class="text-muted small pt-2 ps-1">{{ $need->country }}</span>
+                                            </div>
+
+                                            <div class="ps-3">
+                                                <span class="text-success small pt-1 fw-bold">Value:</span> <span
+                                                    class="text-muted small pt-2 ps-1">@money($need->monetary)</span>
+                                            </div>
                                         </div>
-
-                                        <div class="ps-3">
-                                            <span class="text-success small pt-1 fw-bold">Value:</span> <span
-                                                class="text-muted small pt-2 ps-1">@money($need->monetary)</span>
-                                        </div>
-
-
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     @endforeach
                 </div>
