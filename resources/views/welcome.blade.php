@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>ZenBlog Bootstrap Template - Index</title>
+    <title>Moren-O - Goodwill Foundation</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
     <link href="{{asset('assets/img/favicon.png')}}" rel="icon">
-    <link href="assetx/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="{{asset('zenblog/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,15 +22,15 @@
 
 
     <!-- Vendor CSS Files -->
-    <link href="assetx/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assetx/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assetx/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <link href="assetx/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assetx/vendor/aos/aos.css" rel="stylesheet">
+    <link href="{{asset('zenblog/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('zenblog/assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{asset('zenblog/assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+    <link href="{{asset('zenblog/assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+    <link href="{{asset('zenblog/assets/vendor/aos/aos.css')}}" rel="stylesheet">
 
     <!-- Template Main CSS Files -->
-    <link href="assetx/css/variables.css" rel="stylesheet">
-    <link href="assetx/css/main.css" rel="stylesheet">
+    <link href="{{asset('zenblog/assets/css/variables.css')}}" rel="stylesheet">
+    <link href="{{asset('zenblog/assets/css/main.css')}}" rel="stylesheet">
 
     <!-- =======================================================
   * Template Name: ZenBlog - v1.2.1
@@ -46,9 +46,9 @@
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-            <a href="index.html" class="logo text-center">
+            <a href="{{route('welcome')}}" class="logo text-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="assetx/img/logo.png" alt=""> -->
+                <!-- <img src="zenblog/assets/img/logo.png" alt=""> -->
                 <h1>Moren-O</h1>
                 <div>
                     <span class="text-muted text-sm">Goodwill Foundation</span>
@@ -57,9 +57,9 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="single-post.html">About Us</a></li>
-                    <li class="dropdown"><a href="category.html"><span>Services</span> <i
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li class="dropdown"><a href="#"><span>Services</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
                             <li><a href="#">Monetary Contributions</a></li>
@@ -111,24 +111,27 @@
 
                     <div class="d-md-flex post-entry-2 half mt-2">
                         {{-- <a href="#" class="me-4 thumbnail order-2">
-                            <img src="assetx/img/post-landscape-1.jpg" alt="" class="img-fluid">
+                            <img src="zenblog/assets/img/post-landscape-1.jpg" alt="" class="img-fluid">
                         </a> --}}
                         <!-- Slides with fade transition -->
                         <div id="carouselExampleFade" class="carousel slide carousel-fade thumbnail order-2"
                             data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="assets/img/slides-1.jpg" class="d-block w-100" alt="...">
+                                    <img src="{{asset('zenblog/assets/img/image1.jpg')}}" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="assets/img/slides-2.jpg" class="d-block w-100" alt="...">
+                                    <img src="{{asset('zenblog/assets/img/image2.jpg')}}" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="assets/img/slides-3.jpg" class="d-block w-100" alt="...">
+                                    <img src="{{asset('zenblog/assets/img/image3.jpg')}}" class="d-block w-100" alt="...">
                                 </div>
-                                {{--                    <div class="carousel-item">
-                                    <img src="assetx/img/post-landscape-1.jpg" class="d-block w-100" alt="...">
-                                </div> --}}
+                                <div class="carousel-item">
+                                    <img src="{{asset('zenblog/assets/img/image4.jpg')}}" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="{{asset('zenblog/assets/img/image5.jpg')}}" class="d-block w-100" alt="...">
+                                </div>
                             </div>
 
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
@@ -191,6 +194,7 @@
                         </div>
                     @endforeach
                 </div>
+
                 <div class="text-center mt-4">
                     <a href="#" class="btn btn-primary">Browse All</a>
                 </div>
@@ -230,7 +234,7 @@
                         <ul class="footer-links footer-blog-entry list-unstyled">
                             <li>
                                 <a href="single-post.html" class="d-flex align-items-center">
-                                    <img src="assetx/img/post-sq-1.jpg" alt="" class="img-fluid me-3">
+                                    <img src="zenblog/assets/img/post-sq-1.jpg" alt="" class="img-fluid me-3">
                                     <div>
                                         <div class="post-meta d-block"><span class="date">Culture</span> <span
                                                 class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
@@ -241,7 +245,7 @@
 
                             <li>
                                 <a href="single-post.html" class="d-flex align-items-center">
-                                    <img src="assetx/img/post-sq-2.jpg" alt="" class="img-fluid me-3">
+                                    <img src="zenblog/assets/img/post-sq-2.jpg" alt="" class="img-fluid me-3">
                                     <div>
                                         <div class="post-meta d-block"><span class="date">Culture</span> <span
                                                 class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
@@ -253,7 +257,7 @@
 
                             <li>
                                 <a href="single-post.html" class="d-flex align-items-center">
-                                    <img src="assetx/img/post-sq-3.jpg" alt="" class="img-fluid me-3">
+                                    <img src="zenblog/assets/img/post-sq-3.jpg" alt="" class="img-fluid me-3">
                                     <div>
                                         <div class="post-meta d-block"><span class="date">Culture</span> <span
                                                 class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
@@ -264,7 +268,7 @@
 
                             <li>
                                 <a href="single-post.html" class="d-flex align-items-center">
-                                    <img src="assetx/img/post-sq-4.jpg" alt="" class="img-fluid me-3">
+                                    <img src="zenblog/assets/img/post-sq-4.jpg" alt="" class="img-fluid me-3">
                                     <div>
                                         <div class="post-meta d-block"><span class="date">Culture</span> <span
                                                 class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
@@ -315,14 +319,14 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="assetx/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assetx/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assetx/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assetx/vendor/aos/aos.js"></script>
-    <script src="assetx/vendor/php-email-form/validate.js"></script>
+    <script src="{{asset('zenblog/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('zenblog/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+    <script src="{{asset('zenblog/assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+    <script src="{{asset('zenblog/assets/vendor/aos/aos.js')}}"></script>
+    <script src="#"></script>
 
     <!-- Template Main JS File -->
-    <script src="assetx/js/main.js"></script>
+    <script src="{{asset('zenblog/assets/js/main.js')}}"></script>
 
 </body>
 

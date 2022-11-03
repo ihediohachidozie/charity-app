@@ -28,7 +28,7 @@ use App\Http\Controllers\WelcomeController;
     return view('welcome');
 }); */
 
-Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
 Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
 
@@ -49,3 +49,4 @@ Route::group(['middleware' => 'auth'], function () {
     # Route::get('users', [AdminController::class, 'edit'])->name('admin.index');
 });
 Route::get('/donation-form/{id}', [DonateController::class, 'getform'])->name('donate.form');
+Route::post('/donation-form', [DonateController::class, 'postform'])->name('donate.store');
