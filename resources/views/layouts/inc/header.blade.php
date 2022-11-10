@@ -63,7 +63,7 @@
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="{{route('needs.index')}}">
                             <i class="bi bi-question-circle"></i>
-                            <span>Need Help?</span>
+                            <span>New Project?</span>
                         </a>
                     </li>
                     <li>

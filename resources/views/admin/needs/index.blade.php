@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Users' Needs</h1>
+        <h1>All Projects</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item active">Users' Needs</li>
+                <li class="breadcrumb-item active">Projects</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -15,90 +15,53 @@
         <div class="row">
 
             <!-- Left side columns -->
-            <div class="col-lg-12">
-                <div class="row">
+            <div class="row">
+                @if (count($needs) > 0)
+                    @foreach ($needs as $need)
+                        <div class="col-lg-4">
+                            <!-- Card with an image on top -->
+                            <div class="card">
+                                <a href="{{ route('needhelps.show', $need) }}">
+                                    <img src="{{ asset('storage/' . $need->picture) }}" class="card-img-top" alt="...">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $need->caption }}</h5>
 
-                    <!-- Recent Sales -->
-                    <div class="col-12">
-                        <div class="card recent-sales overflow-auto">
-
-                            <div class="filter">
-
-
-                            </div>
-
-                            <div class="card-body">
-                                <h5 class="card-title">All Requests</h5>
-
-                                <table class="table table-borderless datatable">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Picture</th>
-                                            <th scope="col">User</th>
-
-                                            <th scope="col">Project</th>
-                                            <th scope="col" class="text-center">Value</th>
-                                            <th scope="col" class="text-center">Status</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if (count($needs) > 0)
-                                            @foreach ($needs as $need)
-                                                <tr>
-
-                                                    <th scope="row" class="text-center">
-                                                        <a href="{{ route('needhelps.show', $need) }}" class="text-primary">
-                                                            <img src="{{ asset('storage/' . $need->picture) }}"
-                                                                class="rounded" width="50px" height="50px">
-                                                        </a>
-                                                    </th>
-
-                                                    <td>
-                                                        <a href="{{ route('users.show', $need->user->id) }}">
-                                                            {{ $need->user->name }}
-                                                        </a>
-                                                    </td>
-                                                    <td><a href="{{ route('needhelps.show', $need) }}"
-                                                            class="text-primary">{{ $need->caption }}</a>
-                                                    </td>
-                                                    <td class="text-center">@money($need->monetary)</td>
-                                                    <td class="text-center">
-                                                        @if ($need->status == 'Pending')
-                                                            <span class="badge bg-warning text-dark"><i
-                                                                    class="bi bi-exclamation-triangle me-1"></i>{{ $need->status }}</span>
-                                                        @elseif ($need->status == 'Rejected')
-                                                            <span class="badge bg-danger text-white"><i
-                                                                    class="bi bi-exclamation-octagon me-1"></i>{{ $need->status }}</span>
-                                                        @else
-                                                            <span class="badge bg-success text-white"><i
-                                                                    class="bi bi-check-circle me-1"></i>{{ $need->status }}</span>
-                                                        @endif
-
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @else
-                                            <tr>
-                                                <td colspan="4" class="text-center">
-                                                    No record found
-                                                </td>
-                                            </tr>
-                                        @endif
-
-                                    </tbody>
-                                </table>
-
-                            </div>
+                                    <div class="d-flex mb-2" style="justify-content:space-between">
+                                        <div>
+                                            <span class="text-success small pt-1 fw-bold">Project Value:</span> <span
+                                                class="text-muted small pt-2 ps-1">@money($need->monetary)</span>
+                                        </div>
+                                        <div class="ps-3">
+                                            <span class="text-success small pt-1 fw-bold">Status:</span>
+                                            @if ($need->status == 'Pending')
+                                                <span class="badge bg-warning text-dark"><i
+                                                        class="bi bi-exclamation-triangle me-1"></i>{{ $need->status }}</span>
+                                            @elseif ($need->status == 'Rejected')
+                                                <span class="badge bg-danger text-white"><i
+                                                        class="bi bi-exclamation-octagon me-1"></i>{{ $need->status }}</span>
+                                            @else
+                                                <span class="badge bg-success text-white"><i
+                                                        class="bi bi-check-circle me-1"></i>{{ $need->status }}</span>
+                                            @endif
+                                        </div>
+                                        <div class="ps-3">
+                                            <span class="text-success small pt-1 fw-bold">Donations:</span> <span
+                                                class="text-muted small pt-2 ps-1">@money($need->donations_sum_amount)</span>
+                                        </div>
+                                    </div>
 
 
+                                </div>
+                            </div><!-- End Card with an image on top -->
 
-                        </div><!-- End Disabled Backdrop Modal-->
-                    </div>
-                </div><!-- End Recent Sales -->
+                        </div>
 
-
+                    @endforeach
+                    {{ $needs->links() }}
+                @endif
             </div>
         </div>
     </section>
+
 @endsection

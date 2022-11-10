@@ -21,7 +21,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('needs.index') }}">
                 <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
+                <span>New Project</span>
             </a>
         </li>
 
@@ -35,7 +35,13 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('needhelps.index') }}">
-                    <i class="bi bi-layers"></i><span>Users' Needs</span>
+                    <i class="bi bi-layers"></i><span>Projects</span>
+                </a>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('donors') }}">
+                    <i class="bi bi-cash-stack"></i><span>Donations</span>
                 </a>
 
             </li>

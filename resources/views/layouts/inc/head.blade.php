@@ -22,6 +22,8 @@
     <!-- Template Main CSS File -->
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <!-- =======================================================
     * Template Name: NiceAdmin - v2.4.1
     * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -29,4 +31,23 @@
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
     @livewireStyles
+    <style>
+        table #social-links{
+            display: inline-table;
+        }
+        table #social-links ul li{
+            display: inline;
+        }
+        table #social-links ul li a{
+            padding: 5px;
+            border: 1px solid #ccc;
+            margin: 1px;
+            font-size: 15px;
+            background: #e3e3ea;
+
+        }
+        a {
+            text-decoration-line: none
+        }
+    </style>
   </head>

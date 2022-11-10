@@ -11,9 +11,4 @@
   <!-- Template Main JS File -->
   <script src="{{asset('assets/js/main.js')}}"></script>
 
-  <script>
-function myFun(){
-    var element = document.getElementById('card-body');
-    element.classList.toggle(active)
-}
-  </script>
+

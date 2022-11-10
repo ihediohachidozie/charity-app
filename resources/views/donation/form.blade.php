@@ -38,13 +38,58 @@
       * Author: BootstrapMade.com
       * License: https:///bootstrapmade.com/license/
       ======================================================== -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <style type="text/css">
+        .container {
+            margin-top: 40px;
+        }
+
+        .panel-heading {
+            display: inline;
+            font-weight: bold;
+        }
+
+        .flex-table {
+            display: table;
+        }
+
+        .display-tr {
+            display: table-row;
+        }
+
+        .display-td {
+            display: table-cell;
+            vertical-align: middle;
+            width: 55%;
+        }
+
+        .card-title {
+            font-size: 20px;
+        }
+
+        .d-flex {
+            font-size: 15px;
+        }
+
+        a {
+            color: black;
+        }
+
+        a:hover {
+            text-decoration-line: none;
+        }
+
+    </style>
 </head>
 
 <body>
 
     <!-- ======= Header ======= -->
     <header id="header" class="header d-flex align-items-center fixed-top">
-        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between"
+            style="justify-content:space-between">
 
             <a href="{{ route('welcome') }}" class="logo text-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
@@ -57,7 +102,7 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="{{ route('welcome') }}">Home</a></li>
                     <li><a href="#">About Us</a></li>
                     <li class="dropdown"><a href="#"><span>Services</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -106,54 +151,108 @@
         <section>
             <div class="container" data-aos="fade-up">
                 <div class="row mb-2">
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow">
+                            <img src="{{ asset('storage/' . $need->picture) }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h6 class="card-title">{{ $need->caption }}</h6>
 
+                                <div class="d-flex mb-2" style="justify-content:space-between">
+                                    <div>
+                                        <span class="text-success small pt-1 fw-bold">Value:</span> <span
+                                            class="text-muted small pt-2 ps-1">@money($need->monetary)</span>
+                                    </div>
+                                    <div class="ps-3">
+                                        <span class="text-success small pt-1 fw-bold">Donations:</span> <span
+                                            class="text-muted small pt-2 ps-1">{{ $need->donations->count() }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="row text-center">
+                                    <h3 class="panel-heading">We appreciate your kind gesture</h3>
+                                </div>
+                            </div>
+                            <div class="panel-body">
 
-                    <div class="d-md-flex post-entry-2 half mt-2">
-                        {{-- <a href="#" class="me-4 thumbnail order-2">
-                            <img src="zenblog/assets/img/post-landscape-1.jpg" alt="" class="img-fluid">
-                        </a> --}}
-                        <div class="php-email-form thumbnail order-2">
+                                @if (Session::has('success'))
+                                    <div class="alert alert-success text-center">
+                                        <a href="#" class="close" data-dismiss="alert"
+                                            aria-label="close">×</a>
+                                        <p>{{ Session::get('success') }}</p>
+                                    </div>
+                                @endif
 
-                            <div class="form mt-5">
-                                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                                <form role="form" action="{{ route('donate.store') }}" method="post"
+                                    class="validation" data-cc-on-file="false"
+                                    data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
+                                    @csrf
+                                    <input type="hidden" name="need_id" value="{{ $need->id }}">
+                                    <input type="hidden" name="caption" value="{{ $need->caption }}">
+                                    <div class='form-row row'>
+                                        <div class='col-xs-12 form-group required'>
+                                            <label class='control-label'>Email</label> <input class='form-control'
+                                                size='4' type='email' name="email">
+                                        </div>
+                                    </div>
+                                    <div class='form-row row'>
+                                        <div class='col-xs-12 form-group required'>
+                                            <label class='control-label'>Name on Card</label> <input
+                                                class='form-control' size='4' type='text' name="name">
+                                        </div>
+                                    </div>
+                                    <div class='form-row row'>
+                                        <div class='col-xs-12 form-group required'>
+                                            <label class='control-label'>Amount</label> <input class='form-control'
+                                                size='4' type='number' name="amount" min="50">
+                                        </div>
+                                    </div>
+                                    <div class='form-row row'>
+                                        <div class='col-xs-12 form-group required'>
+                                            <label class='control-label'>Card Number</label> <input autocomplete='off'
+                                                class='form-control card-num' size='20' type='text'>
+                                        </div>
+                                    </div>
+
+                                    <div class='form-row row'>
+                                        <div class='col-xs-12 col-md-4 form-group cvc required'>
+                                            <label class='control-label'>CVC</label>
+                                            <input autocomplete='off' class='form-control card-cvc'
+                                                placeholder='e.g 415' size='4' type='text'>
+                                        </div>
+                                        <div class='col-xs-12 col-md-4 form-group expiration required'>
+                                            <label class='control-label'>Expiration Month</label> <input
+                                                class='form-control card-expiry-month' placeholder='MM'
+                                                size='2' type='text'>
+                                        </div>
+                                        <div class='col-xs-12 col-md-4 form-group expiration required'>
+                                            <label class='control-label'>Expiration Year</label> <input
+                                                class='form-control card-expiry-year' placeholder='YYYY'
+                                                size='4' type='text'>
+                                        </div>
+                                    </div>
+
+                                    <div class='form-row row'>
+                                        <div class='col-md-12 hide error form-group'>
+                                            <div class='alert-danger alert'>Fix the errors before you begin.</div>
+                                        </div>
+                                    </div>
+
                                     <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <input type="text" name="name" class="form-control" id="name"
-                                                placeholder="Your Name" required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <input type="email" class="form-control" name="email" id="email"
-                                                placeholder="Your Email" required>
+                                        <div class="col-xs-12">
+                                            <button class="btn btn-danger btn-lg btn-block" type="submit">Pay Now
+                                            </button>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="subject" id="subject"
-                                            placeholder="Subject" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                                    </div>
-                                    <div class="my-3">
-                                        <div class="loading">Loading</div>
-                                        <div class="error-message"></div>
-                                        <div class="sent-message">Your message has been sent. Thank you!</div>
-                                    </div>
-                                    <div class="text-center"><button type="submit">Send Message</button></div>
+
                                 </form>
                             </div>
                         </div>
-                        <div class="pe-md-5 mt-4 mt-md-0">
-                            <div class="post-meta mt-4">Mission &amp; Vision</div>
-                            <h2 class="mb-2 display-4">Mission &amp; Vision</h2>
-
-                            <p>To be in the forefront of offerring succour to the underprivileged wherever they could be
-                                found round the world</p>
-                            <p>To strive towards making the world better place through impactful charitable programmes
-                                that will alleviate the stuffering the poor and the vulnerable cross regions in
-                                developing countries round the world.</p>
-                        </div>
                     </div>
-
                 </div>
 
             </div>
@@ -195,7 +294,8 @@
                         <ul class="footer-links footer-blog-entry list-unstyled">
                             <li>
                                 <a href="single-post.html" class="d-flex align-items-center">
-                                    <img src="assetx/img/post-sq-1.jpg" alt="" class="img-fluid me-3">
+                                    <img src="zenblog/assets/img/post-sq-1.jpg" alt=""
+                                        class="img-fluid me-3">
                                     <div>
                                         <div class="post-meta d-block"><span class="date">Culture</span> <span
                                                 class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
@@ -206,7 +306,8 @@
 
                             <li>
                                 <a href="single-post.html" class="d-flex align-items-center">
-                                    <img src="assetx/img/post-sq-2.jpg" alt="" class="img-fluid me-3">
+                                    <img src="zenblog/assets/img/post-sq-2.jpg" alt=""
+                                        class="img-fluid me-3">
                                     <div>
                                         <div class="post-meta d-block"><span class="date">Culture</span> <span
                                                 class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
@@ -218,7 +319,8 @@
 
                             <li>
                                 <a href="single-post.html" class="d-flex align-items-center">
-                                    <img src="assetx/img/post-sq-3.jpg" alt="" class="img-fluid me-3">
+                                    <img src="zenblog/assets/img/post-sq-3.jpg" alt=""
+                                        class="img-fluid me-3">
                                     <div>
                                         <div class="post-meta d-block"><span class="date">Culture</span> <span
                                                 class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
@@ -229,7 +331,8 @@
 
                             <li>
                                 <a href="single-post.html" class="d-flex align-items-center">
-                                    <img src="assetx/img/post-sq-4.jpg" alt="" class="img-fluid me-3">
+                                    <img src="zenblog/assets/img/post-sq-4.jpg" alt=""
+                                        class="img-fluid me-3">
                                     <div>
                                         <div class="post-meta d-block"><span class="date">Culture</span> <span
                                                 class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
@@ -289,6 +392,62 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('zenblog/assets/js/main.js') }}"></script>
+
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            var $form = $(".validation");
+            $('form.validation').bind('submit', function(e) {
+                var $form = $(".validation"),
+                    inputVal = ['input[type=email]', 'input[type=password]',
+                        'input[type=text]', 'input[type=file]',
+                        'textarea'
+                    ].join(', '),
+                    $inputs = $form.find('.required').find(inputVal),
+                    $errorStatus = $form.find('div.error'),
+                    valid = true;
+                $errorStatus.addClass('hide');
+
+                $('.has-error').removeClass('has-error');
+                $inputs.each(function(i, el) {
+                    var $input = $(el);
+                    if ($input.val() === '') {
+                        $input.parent().addClass('has-error');
+                        $errorStatus.removeClass('hide');
+                        e.preventDefault();
+                    }
+                });
+
+                if (!$form.data('cc-on-file')) {
+                    e.preventDefault();
+                    Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+                    Stripe.createToken({
+                        number: $('.card-num').val(),
+                        cvc: $('.card-cvc').val(),
+                        exp_month: $('.card-expiry-month').val(),
+                        exp_year: $('.card-expiry-year').val()
+                    }, stripeHandleResponse);
+                }
+
+            });
+
+            function stripeHandleResponse(status, response) {
+                if (response.error) {
+                    $('.error')
+                        .removeClass('hide')
+                        .find('.alert')
+                        .text(response.error.message);
+                } else {
+                    var token = response['id'];
+                    $form.find('input[type=text]').empty();
+                    $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+                    $form.get(0).submit();
+                }
+            }
+
+        });
+    </script>
 
 </body>
 

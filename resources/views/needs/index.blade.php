@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Need Help</h1>
+        <h1>Projects</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item active">Need Help</li>
+                <li class="breadcrumb-item active">New Project</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -25,13 +25,13 @@
                             <div class="filter">
                                 <a href="{{ route('needs.create') }}" class="btn btn-primary">
                                     <i class="bi bi-plus-lg me-1"></i>
-                                    Request</a>
+                                    Add Project</a>
                                 <a class="icon" href="#" data-bs-toggle="dropdown"></a>
 
                             </div>
 
                             <div class="card-body">
-                                <h5 class="card-title">All Requests</h5>
+                                <h5 class="card-title">All Projects</h5>
 
                                 <table class="table table-borderless datatable">
                                     <thead>
@@ -72,6 +72,7 @@
                                                     <td class="text-center">
                                                         <a href="{{ route('needs.edit', $need->id) }}" class="btn btn-primary"> <i class="bi bi-pencil-square"></i></a>
                                                        <a href="{{ route('needs.show', $need->id) }}" class="btn btn-info"> <i class="bi bi-eye-fill"></i></a>
+                                                       {!! Share::page(url('need-help/'. $need->id), "Need Help")->facebook()->twitter()->whatsapp() !!}
                                                     </td>
                                                 </tr>
                                             @endforeach

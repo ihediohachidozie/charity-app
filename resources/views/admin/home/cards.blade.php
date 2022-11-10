@@ -10,7 +10,7 @@
                                         <i class="bi bi-cash-stack"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6 style="font-size: 20px">0</h6>
+                                        <h6 style="font-size: 20px">@money($donations ?? 0)</h6>
                                         <span class="text-success small pt-1 fw-bold"></span> <span
                                             class="text-muted small pt-2 ps-1"></span>
 

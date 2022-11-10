@@ -29,6 +29,10 @@
                                 <span class="text-success small pt-1 fw-bold">Status:</span> <span
                                     class="text-muted small pt-2 ps-1">{{ $need->status }}</span>
                             </div>
+                            <div class="ps-3">
+                                <span class="text-success small pt-1 fw-bold">Donations:</span> <span
+                                    class="text-muted small pt-2 ps-1">{{ $need->donations->count() }}</span>
+                            </div>
 
                         </div>
                         <div class="d-grid gap-2 mt-3">

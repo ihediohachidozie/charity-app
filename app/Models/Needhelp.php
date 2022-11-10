@@ -15,6 +15,11 @@ class Needhelp extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function donations()
+    {
+        return $this->hasMany(Donation::class);
+    }
+
     public function getTypeAttribute($attribute)
     {
         return [

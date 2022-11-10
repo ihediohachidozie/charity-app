@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Stripe;
+#use Stripe;
 use App\Models\Needhelp;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Stripe\Charge;
+use Stripe\Stripe;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use App\Mail\ReceiptMail;
+use App\Models\Donation;
 
 class DonateController extends Controller
 {
@@ -14,7 +20,7 @@ class DonateController extends Controller
       //  dd($id);
       $need = Needhelp::find($id);
      // dd($need);
-      return view('donation.form');
+      return view('donation.form', compact('need'));
     }
 
     /**
@@ -23,21 +29,48 @@ class DonateController extends Controller
 
      public function postform(Request $request)
      {
+      # dd($request->all());
         # code...
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        $payment = Stripe\Charge::create([
-            'amount' => 100 * 150,
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        $payment = Charge::create([
+
+            "amount" => 100 * intval($request->amount),
             'currency' => 'usd',
             'source' => $request->stripeToken,
-            'description' => 'Making test payment',
-            "metadata" => [
-                "customer" => $request->name,
-                'email' => $request->email
-                ]
+            'description' => $request->caption,
+            'receipt_email' => $request->email
 
         ]);
-        dd($payment);
 
+        $msg = '';
+
+        if($payment->status == 'succeeded'){
+
+            Donation::create([
+                'email' => $request->email,
+                'needhelp_id' => $request->need_id,
+                'name'  => $request->name,
+                'amount' => intval($request->amount),
+                'trans_id' => $payment->id,
+                'receipt_url' => $payment->receipt_url,
+                'status' => $payment->status
+            ]);
+            $url = $payment->receipt_url;
+            $name = $request->name;
+            $email = $request->email;
+            $goal = $request->caption;
+
+            $msg = 'Payment has been successfully processed.';
+
+            Mail::to($email)->send(new ReceiptMail($url, $name, $goal));
+
+        }else{
+            $msg = 'Transaction failed.';
+        }
+        Session::flash('success', $msg);
+
+        return back();
        # dd($payment->status);
         #dd($payment->metadata->customer);
         #dd($payment->metadata->email);

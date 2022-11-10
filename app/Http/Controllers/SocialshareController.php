@@ -5,10 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Needhelp;
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Gate;
-use function PHPUnit\Framework\returnSelf;
-
-class AdminNeedController extends Controller
+class SocialshareController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +14,7 @@ class AdminNeedController extends Controller
      */
     public function index()
     {
-        if (!Gate::allows('admin_view')) {
-            return view('error404');
-        }
-        $needs = Needhelp::with('user')->orderBy('id', 'desc')->withSum('donations', 'amount')->paginate(3);
-
-        return view('admin.needs.index', compact('needs'));
+        //
     }
 
     /**
@@ -52,13 +44,9 @@ class AdminNeedController extends Controller
      * @param  \App\Models\Needhelp  $needhelp
      * @return \Illuminate\Http\Response
      */
-    public function show(Needhelp $needhelp)
+    public function show($id)
     {
-        // dd($needhelp);
-        if (!Gate::allows('admin_view', $needhelp)) {
-            return view('error404');
-        }
-        return view('admin.needs.show', compact('needhelp'));
+        //
     }
 
     /**
@@ -81,16 +69,7 @@ class AdminNeedController extends Controller
      */
     public function update(Request $request, Needhelp $needhelp)
     {
-
-        if (!Gate::allows('admin_view', $needhelp)) {
-            return view('error404');
-        }
-        Needhelp::find($needhelp->id)->update([
-            'status' => $request->status,
-
-        ]);
-
-        return redirect()->route('needhelps.index');
+        //
     }
 
     /**

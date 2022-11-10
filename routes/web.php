@@ -10,6 +10,7 @@ use App\Http\Controllers\NeedController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminNeedController;
 use App\Http\Controllers\DonateController;
+use App\Http\Controllers\SocialshareController;
 use App\Http\Controllers\UserprofileController;
 use App\Http\Controllers\WelcomeController;
 
@@ -45,8 +46,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', AdminController::class);
     Route::resource('needhelps', AdminNeedController::class);
 
-    # Route::get('users', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('donors', [AdminController::class, 'donors'])->name('donors');
     # Route::get('users', [AdminController::class, 'edit'])->name('admin.index');
 });
 Route::get('/donation-form/{id}', [DonateController::class, 'getform'])->name('donate.form');
 Route::post('/donation-form', [DonateController::class, 'postform'])->name('donate.store');
+Route::get('need-help/{id}', [SocialshareController::class, 'show']);
