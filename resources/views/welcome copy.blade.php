@@ -108,35 +108,6 @@
                                 <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                             </svg>
 
-<<<<<<< HEAD
-                <div class="row">
-                    @foreach ($needs as $need)
-                        <div class="col-lg-3">
-                            <a href="{{route('donate.form', $need->id)}}">
-                                <div class="card border-0 shadow">
-                                    <img src="{{ asset('storage/' . $need->picture) }}" class="card-img-top"
-                                        alt="...">
-                                    <div class="card-body">
-                                        <h6 class="card-title">{{ $need->caption }}</h6>
-
-                                        <div class="d-flex mb-2" style="justify-content:space-between">
-                                            {{-- <div>
-                                                <span class="text-success small pt-1 fw-bold">Country:</span> <span
-                                                    class="text-muted small pt-2 ps-1">{{ $need->country }}</span>
-                                            </div> --}}
-
-                                            <div class="">
-                                                <span class="text-success small pt-1 fw-bold">Value:</span> <span
-                                                    class="text-muted small pt-2 ps-1">@money($need->monetary)</span>
-                                            </div>
-                                            <div class="ps-3">
-                                                <span class="text-success small pt-1 fw-bold">Donations:</span> <span
-                                                    class="text-muted small pt-2 ps-1">{{$need->donations->count()}}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-=======
                             <a href="https://laravel.bigcartel.com" class="ml-1 underline">
                                 Shop
                             </a>
@@ -147,7 +118,6 @@
 
                             <a href="https://github.com/sponsors/taylorotwell" class="ml-1 underline">
                                 Sponsor
->>>>>>> 7bce8f4240beaef54cfc74096aad123016ebd609
                             </a>
                         </div>
                     </div>
