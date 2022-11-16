@@ -27,11 +27,13 @@
                         <!-- Pie Chart -->
                         @include('admin.home.piechart')
                         <!-- End Pie CHart -->
+
+                        @include('admin.home.yearlychart')
                     @endcan
                     @can('user_view')
-                        @include('card')
+                        @include('users-home.card')
 
-                        @include('displayneeds')
+                        @include('users-home.displayneeds')
                     @endcan
 
                     <!-- Recent Sales -->

@@ -72,7 +72,7 @@
                                                     <td class="text-center">
                                                         <a href="{{ route('needs.edit', $need->id) }}" class="btn btn-primary"> <i class="bi bi-pencil-square"></i></a>
                                                        <a href="{{ route('needs.show', $need->id) }}" class="btn btn-info"> <i class="bi bi-eye-fill"></i></a>
-                                                       {!! Share::page(url('need-help/'. $need->id), "Need Help")->facebook()->twitter()->whatsapp() !!}
+                                                       {!! Share::page(url('donation-form/'. $need->id), "Need Help")->facebook()->twitter()->whatsapp() !!}
                                                     </td>
                                                 </tr>
                                             @endforeach

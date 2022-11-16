@@ -1,7 +1,7 @@
 <div class="col-lg-6">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">{{ date('Y') }} Donation Chart</h5>
+            <h5 class="card-title">Year {{ date('Y') }} Donation Chart</h5>
 
             <!-- Bar Chart -->
             <canvas id="barChart" style="max-height: 400px;"></canvas>

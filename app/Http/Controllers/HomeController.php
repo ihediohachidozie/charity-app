@@ -33,42 +33,54 @@ class HomeController extends Controller
         $monthly_donations = Donation::select(
             DB::raw('sum(amount) as Total'),
             DB::raw("(DATE_FORMAT(created_at, '%b')) as month")
-            )->where(DB::raw("DATE_FORMAT(created_at, '%Y')"), date('Y'))
+        )->where(DB::raw("DATE_FORMAT(created_at, '%Y')"), date('Y'))
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%b')"))
             ->orderBy(DB::raw("DATE_FORMAT(created_at, '%m')"))
             ->pluck('Total', 'month');
 
-      #  dd($monthly_donations);
+
         $total = [];
         $month = [];
 
-        foreach($monthly_donations as $key => $value){
+        foreach ($monthly_donations as $key => $value) {
             array_push($month, $key);
             array_push($total, $value);
-         }
+        }
+
+        $yearly_donations = Donation::select(
+            DB::raw('sum(amount) as Total'),
+            DB::raw("(DATE_FORMAT(created_at, '%Y')) as year")
+        )->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y')"))
+            ->orderBy(DB::raw("DATE_FORMAT(created_at, '%Y')"))
+            ->pluck('Total', 'year');
 
 
 
-        if (auth()->user()->is_admin){
+        $yearlytotal = [];
+        $year = [];
 
+        foreach ($yearly_donations as $key => $value) {
+            array_push($year, $key);
+            array_push($yearlytotal, $value);
+        }
+
+        if (auth()->user()->is_admin) {
 
             $needs = Needhelp::with('donations')->get();
 
             $requested_value = DB::table('needhelps')
-                    ->select(DB::raw('SUM(monetary) as total_values'))
-                    ->pluck('total_values');
-        }else{
+                ->select(DB::raw('SUM(monetary) as total_values'))
+                ->pluck('total_values');
+        } else {
             $needs = Needhelp::where('user_id', auth()->id())->paginate(3);
             $n = Needhelp::where('user_id', auth()->id())->pluck('id');
             $donations = Donation::whereIn('needhelp_id', $n)->get();
             $requested_value = DB::table('needhelps')
-                    ->select(DB::raw('SUM(monetary) as total_values'))
-                    ->where('user_id', auth()->id())
-                    ->pluck('total_values');
+                ->select(DB::raw('SUM(monetary) as total_values'))
+                ->where('user_id', auth()->id())
+                ->pluck('total_values');
         }
 
-              // dd($orders);
-
-        return view('home', compact('users', 'needs', 'requested_value', 'donations', 'month', 'total'));
+        return view('home', compact('users', 'needs', 'requested_value', 'donations', 'month', 'total', 'year', 'yearlytotal'));
     }
 }

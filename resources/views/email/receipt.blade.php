@@ -12,7 +12,7 @@ Hi {{$name}},
 
 
 
-<x-mail::button :url="$url">
+<x-mail::button :url="$url" color="success">
 View Receipt
 </x-mail::button>
 
